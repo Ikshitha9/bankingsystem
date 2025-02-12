@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Banking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Automated Banking System</h1>
+    </header>
+
+    <main>
+        <!-- Login Form -->
+        <section id="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username: </label>
+                <input type="text" id="username" required>
+                <br>
+                <label for="password">Password: </label>
+                <input type="password" id="password" required>
+                <br>
+                <button type="submit">Login</button>
+            </form>
+            <div id="loginMessage"></div>
+        </section>
+        <!-- Account Information -->
+        <section id="accountInfo" style="display:none;">
+            <h2>Account Information</h2>
+            <p id="accountStatus"></p>
+            <p id="balance"></p>
+            <button onclick="checkBalance()" id="cb-btn">Check Balance</button>
+            <button onclick="depositMoney()" id="dm-btn">Deposit Money</button>
+            <button onclick="withdrawMoney()" id="wm-btn">Withdraw Money</button>
+        </section>
+    </main>
+    <div id="credentialsBox">
+        <h3>Test Credentials</h3>
+        <p>Username: ekshita</p>
+        <p>Password: 1234</p>
+        <p>Username: rishita</p>
+        <p>Password: 5678</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Automated Banking System. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
