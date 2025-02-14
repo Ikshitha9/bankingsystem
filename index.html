@@ -10,31 +10,24 @@
 
     <header>
         <h1>Automated Banking System</h1>
+        <div id="credentialsBox"></div>
     </header>
-
-    <!-- Floating Credentials Box -->
-    <div id="credentialsBox">
-        <h3>Test Credentials</h3>
-        <p>Username: john_doe</p>
-        <p>Password: 1234</p>
-        <p>Username: jane_smith</p>
-        <p>Password: 5678</p>
-    </div>
 
     <main>
         <!-- Login Form -->
         <section id="login">
             <h2>Login</h2>
             <form id="loginForm">
-                <label for="username">Username:</label>
+                <label for="username">Username: </label>
                 <input type="text" id="username" required>
                 <br>
-                <label for="password">Password:</label>
+                <label for="password">Password: </label>
                 <input type="password" id="password" required>
                 <br>
                 <button type="submit" id="loginButton">Login</button>
-                <p><a href="#" id="forgotPassword">Forgot Password?</a></p>
+                <button id="forgotPassword">Forgot Password?</button>
             </form>
+            <div id="lockoutMessage"></div>
             <div id="loginMessage"></div>
         </section>
 
