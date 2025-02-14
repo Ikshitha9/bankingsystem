@@ -5,9 +5,9 @@ const users = {
 };
 
 // Lockout settings
-const MAX_ATTEMPTS = 3; // Number of incorrect attempts before lock
-const LOCKOUT_TIME = 30 * 1000; // Lockout duration in milliseconds (30 sec)
-let lockoutInterval; // To update the countdown every second
+const MAX_ATTEMPTS = 3;
+const LOCKOUT_TIME = 30 * 1000; // 30 seconds in milliseconds
+let lockoutInterval;
 
 // Function to update the credentials box dynamically
 function updateCredentialsBox() {
@@ -23,32 +23,29 @@ function updateCredentialsBox() {
 // Initialize credentials on page load
 updateCredentialsBox();
 
-// Function to start lockout timer
+// Function to start lockout countdown
 function startLockoutCountdown(username) {
     let user = users[username];
     let timeLeft = Math.ceil((user.lockUntil - Date.now()) / 1000);
-
-    // Disable login button during lockout
     document.getElementById("loginButton").disabled = true;
-    
+
     lockoutInterval = setInterval(() => {
         if (timeLeft > 0) {
             document.getElementById("lockoutMessage").innerText = `Too many failed attempts. Try again in ${timeLeft} seconds.`;
             timeLeft--;
         } else {
             clearInterval(lockoutInterval);
-            user.failedAttempts = 0; // Reset failed attempts after lockout
-            user.lockUntil = null; // Unlock account
+            user.failedAttempts = 0;
+            user.lockUntil = null;
             document.getElementById("lockoutMessage").innerText = "";
-            document.getElementById("loginButton").disabled = false; // Enable login button
+            document.getElementById("loginButton").disabled = false;
         }
     }, 1000);
 }
 
 // Handle user login
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
-
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -59,22 +56,18 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 
     const user = users[username];
 
-    // Check if the account is locked
     if (user.lockUntil && user.lockUntil > Date.now()) {
-        document.getElementById("loginMessage").innerText = "";
         return;
     }
 
-    // Check if password is correct
     if (user.password === password) {
-        user.failedAttempts = 0; // Reset failed attempts on successful login
+        user.failedAttempts = 0;
         showAccountInfo(username);
     } else {
         user.failedAttempts++;
-
         if (user.failedAttempts >= MAX_ATTEMPTS) {
-            user.lockUntil = Date.now() + LOCKOUT_TIME; // Lock account
-            startLockoutCountdown(username); // Start countdown
+            user.lockUntil = Date.now() + LOCKOUT_TIME;
+            startLockoutCountdown(username);
         } else {
             document.getElementById("loginMessage").innerText = `Incorrect password. Attempts left: ${MAX_ATTEMPTS - user.failedAttempts}`;
         }
@@ -82,28 +75,24 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 });
 
 // Forgot Password Feature
-document.getElementById("forgotPassword").addEventListener("click", function(e) {
+document.getElementById("forgotPassword").addEventListener("click", function (e) {
     e.preventDefault();
-
     const username = document.getElementById("username").value;
 
     if (users[username]) {
         const newPassword = prompt("Enter a new password:");
-
         if (newPassword) {
             users[username].password = newPassword;
-            users[username].failedAttempts = 0; // Reset failed attempts
-            users[username].lockUntil = null; // Unlock account if locked
-            clearInterval(lockoutInterval); // Stop countdown if any
-            document.getElementById("lockoutMessage").innerText = ""; // Clear lockout message
-            document.getElementById("loginButton").disabled = false; // Enable login button
+            users[username].failedAttempts = 0;
+            users[username].lockUntil = null;
+            clearInterval(lockoutInterval);
+            document.getElementById("lockoutMessage").innerText = "";
+            document.getElementById("loginButton").disabled = false;
             alert("Password successfully changed! Use the new password to log in.");
-            updateCredentialsBox(); // Update the credentials display
-        } else {
-            alert("Password reset canceled.");
+            updateCredentialsBox();
         }
     } else {
-        alert("Username not found. Please enter a valid username.");
+        alert("Username not found.");
     }
 });
 
@@ -114,6 +103,7 @@ function showAccountInfo(username) {
     document.getElementById("accountStatus").innerText = "Account Status: Active";
     document.getElementById("balance").innerText = `Balance: $${users[username].balance}`;
 }
+
 
 // Deposit & Withdraw Functions
 function checkBalance() { alert("Your balance is shown above."); }
