@@ -101,18 +101,22 @@ button:hover {
     margin: 10px 0;
 }
 
-/* Footer */
-footer {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    text-align: center;
-    color: #ccc;
+/* Forgot Password Link */
+#forgotPassword {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
 }
 
+#forgotPassword:hover {
+    text-decoration: underline;
+}
 
-/* Credentials Box */
+/* Floating Credentials Box */
 #credentialsBox {
-    position: fixed; 
+    position: fixed;
     top: 20px;
     right: 20px;
     background: rgba(255, 255, 255, 0.2);
@@ -122,27 +126,27 @@ footer {
     backdrop-filter: blur(10px);
     color: #fff;
     font-size: 0.9rem;
-    width: 180px; /* Slightly reduced width */
+    width: 180px;
     text-align: left;
-    z-index: 1000; /* Ensures it stays above other elements */
+    z-index: 1000;
 }
-
-#cb-btn{
-    margin: 10px;
-}
-
 
 #credentialsBox h3 {
     font-size: 1rem;
     margin-bottom: 10px;
     font-weight: 600;
     text-align: center;
-    opacity: 0.7;
 }
 
 #credentialsBox p {
     margin: 5px 0;
     font-weight: 400;
-    color: white;
-    opacity: 0.5;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #ccc;
 }
