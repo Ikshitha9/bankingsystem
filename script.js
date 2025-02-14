@@ -1,4 +1,4 @@
-// Simulated user data (normally you'd get this from a database)
+// Simulated user data
 const users = {
     "john_doe": { password: "1234", balance: 1000, accountStatus: true, failedAttempts: 0, lockUntil: null },
     "jane_smith": { password: "5678", balance: 5000, accountStatus: true, failedAttempts: 0, lockUntil: null },
@@ -104,6 +104,11 @@ function showAccountInfo(username) {
     document.getElementById("balance").innerText = `Balance: $${users[username].balance}`;
 }
 
+// Logout
+function logout() {
+    document.getElementById("accountInfo").style.display = "none";
+    document.getElementById("login").style.display = "block";
+}
 
 // Deposit & Withdraw Functions
 function checkBalance() { alert("Your balance is shown above."); }
