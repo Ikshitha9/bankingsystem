@@ -1,49 +1,69 @@
 // Simulated user data (normally you'd get this from a database)
 const users = {
-    "ekshita": { password: "1234", balance: 1000, accountStatus: true },
-    "rishita": { password: "5678", balance: 5000, accountStatus: true },
+    "john_doe": { password: "1234", balance: 1000, accountStatus: true },
+    "jane_smith": { password: "5678", balance: 5000, accountStatus: true },
 };
+
+// Function to update the credentials box dynamically
+function updateCredentialsBox() {
+    document.getElementById("credentialsBox").innerHTML = `
+        <h3>Test Credentials</h3>
+        <p><strong>Username:</strong> john_doe</p>
+        <p><strong>Password:</strong> ${users["john_doe"].password}</p>
+        <p><strong>Username:</strong> jane_smith</p>
+        <p><strong>Password:</strong> ${users["jane_smith"].password}</p>
+    `;
+}
+
+// Initialize credentials on page load
+updateCredentialsBox();
 
 // Handle user login
 document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();  // Prevent page reload on form submit
+    e.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Check if user exists and credentials are correct
     if (users[username] && users[username].password === password) {
-        // Show account info
         showAccountInfo(username);
     } else {
-        // Invalid login
         document.getElementById("loginMessage").innerText = "Invalid username or password.";
+        alert('Invalid username or password.');
     }
 });
 
-// Show account info after successful login
-function showAccountInfo(username) {
-    document.getElementById("login").style.display = "none";  // Hide login form
-    document.getElementById("credentialsBox").style.display = "none" // Hide Test-credentialsBox
-    document.getElementById("accountInfo").style.display = "block";  // Show account info section
+// Forgot Password Feature
+document.getElementById("forgotPassword").addEventListener("click", function(e) {
+    e.preventDefault();
 
-    const account = users[username];
+    const username = document.getElementById("username").value;
 
-    // Test case 1: Check if user has an account
-    if (account.accountStatus) {
-        document.getElementById("accountStatus").innerText = "Account Status: Active";
+    if (users[username]) {
+        const newPassword = prompt("Enter a new password:");
+
+        if (newPassword) {
+            users[username].password = newPassword;
+            alert("Password successfully changed! Use the new password to log in.");
+            updateCredentialsBox(); // Update the credentials display
+        } else {
+            alert("Password reset canceled.");
+        }
     } else {
-        document.getElementById("accountStatus").innerText = "Account Status: Inactive";
+        alert("Username not found. Please enter a valid username.");
     }
+});
 
-    // Test case 2: Show balance
-    document.getElementById("balance").innerText = `Balance: $${account.balance}`;
+// Show Account Info
+function showAccountInfo(username) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("accountInfo").style.display = "block";
+    document.getElementById("accountStatus").innerText = "Account Status: Active";
+    document.getElementById("balance").innerText = `Balance: $${users[username].balance}`;
 }
 
-// Check Balance functionality (Test case 3)
-function checkBalance() {
-    alert("Your balance is shown above.");
-}
+// Deposit & Withdraw Functions
+function checkBalance() { alert("Your balance is shown above."); }
 
 // Deposit Money (Test case 4)
 function depositMoney() {
