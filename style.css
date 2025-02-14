@@ -1,15 +1,23 @@
-/* Basic Reset */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset and General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Body and Layout */
+/* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #ecf0f1;
-    color: #333;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     padding: 20px;
 }
 
@@ -17,72 +25,128 @@ body {
 header {
     text-align: center;
     margin-bottom: 20px;
-    position: relative;
 }
 
-/* Test Credentials Box */
-#credentialsBox {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ffffff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 0.9rem;
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
+/* Main Container */
 main {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
 }
 
+/* Sections */
 section {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: 400;
+    text-align: left;
+    color: #ddd;
+}
+
+input {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Buttons */
 button {
-    background-color: #3498db;
+    background: #ff9800;
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 25px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background: #e68900;
+    transform: scale(1.05);
 }
 
-button:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
+/* Account Info */
+#accountInfo p {
+    font-size: 1.2rem;
+    margin: 10px 0;
 }
 
-/* Inputs */
-input {
-    padding: 8px;
-    margin: 5px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Labels */
-label {
+/* Forgot Password Link */
+#forgotPassword {
+    color: #ffcc00;
+    text-decoration: none;
     font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#forgotPassword:hover {
+    text-decoration: underline;
+}
+
+/* Floating Credentials Box */
+#credentialsBox {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 0.9rem;
+    width: 180px;
+    text-align: left;
+    z-index: 1000;
+}
+
+#credentialsBox h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#credentialsBox p {
+    margin: 5px 0;
+    font-weight: 400;
 }
 
 /* Footer */
 footer {
-    text-align: center;
-    font-size: 0.8rem;
     margin-top: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #ccc;
 }
